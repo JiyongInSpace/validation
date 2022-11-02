@@ -1,24 +1,10 @@
-# validation
+CJ님의 열정과 JJ님의 성실함을 본받아 나도 1일 1커밋에 도전
 
-## Project setup
-```
-npm install
-```
+# 1
+validation
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 2
+vue3
+typescript
+vee-validate
+yup
