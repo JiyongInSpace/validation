@@ -10,8 +10,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import { Form } from 'vee-validate';
+import { defineComponent, toRefs } from 'vue';
+import { Form, useForm, useField } from 'vee-validate';
 
 export default defineComponent({
     name: 'CompVVForm',
@@ -32,6 +32,15 @@ export default defineComponent({
             default: "text",
         },
     },
+
+    setup(props, ){
+        const { name } = toRefs(props);
+        const { value, errorMessage } = useField(name);
+
+        return {
+
+        }
+    }
     
 });
 </script>
