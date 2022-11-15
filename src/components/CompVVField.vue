@@ -1,7 +1,8 @@
 <template>
     <div class="vv-input">
         <input 
-            type="text"
+            :name="name"
+            :type="type"
             v-model="value"
         >
         {{ errorMessage }}
@@ -11,7 +12,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { useField } from 'vee-validate';
-import * as yup from "yup";
 
 export default defineComponent({
     name: 'CompVVForm',
@@ -30,19 +30,15 @@ export default defineComponent({
             type: String,
             default: "text",
         },
+
+        rules: {
+            type: Function,
+            default: () => true,
+        }
     },
 
-    setup(){
-        const validateField = (_value: string) => {
-            if(!_value){
-                return "NO DATA"
-            }
-
-            return true;
-        }
-
-        const { value, errorMessage } = useField("name", yup.string().required().min(8));
-
+    setup(props){
+        const { value, errorMessage } = useField("name", props.rules as any);
 
         return {
             value, 
