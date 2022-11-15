@@ -1,22 +1,24 @@
 <template>
     <div class="vv-input">
-        <input 
-            type="text"
-            v-model="value"
-        >
-        {{ errorMessage }}
+        <!-- <slot></slot> -->
+        <comp-v-v-field
+            name="id"
+            :rules="yup.string().required().min(8)"
+        ></comp-v-v-field>
     </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import { useField } from 'vee-validate';
+// import { useField } from 'vee-validate';
+import CompVVField from './CompVVField.vue';
 import * as yup from "yup";
 
 export default defineComponent({
     name: 'CompVVForm',
 
     components: {
+        CompVVField,
     },
 
     props: {
@@ -33,20 +35,10 @@ export default defineComponent({
     },
 
     setup(){
-        const validateField = (_value: string) => {
-            if(!_value){
-                return "NO DATA"
-            }
-
-            return true;
-        }
-
-        const { value, errorMessage } = useField("name", yup.string().required().min(8));
 
 
         return {
-            value, 
-            errorMessage,
+            yup,
         }
     }
     

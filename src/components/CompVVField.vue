@@ -1,11 +1,17 @@
 <template>
-    <div class="vv-input">
-        <input 
-            :name="name"
-            :type="type"
-            v-model="value"
-        >
-        {{ errorMessage }}
+    <div class="vv-field">
+        <div class="vv-field-wrapper">
+            <input 
+                class="vv-field-input"
+                :name="name"
+                :type="type"
+                v-model="value"
+            >
+        </div>
+        
+        <div class="vv-field-error">
+            {{ errorMessage }}
+        </div>
     </div>
 </template>
 
@@ -14,7 +20,7 @@ import { defineComponent } from 'vue';
 import { useField } from 'vee-validate';
 
 export default defineComponent({
-    name: 'CompVVForm',
+    name: 'CompVVField',
 
     components: {
     },
@@ -23,7 +29,7 @@ export default defineComponent({
         name: {
             type: String,
             required: true,
-            default: "CompVVForm",
+            default: "CompVVField",
         },
 
         type: {
@@ -32,7 +38,6 @@ export default defineComponent({
         },
 
         rules: {
-            type: Function,
             default: () => true,
         }
     },
@@ -49,10 +54,29 @@ export default defineComponent({
 });
 </script>
 
-<style>
-    .vv-input{
+<style lang="scss" scoped>
+    .vv-field{
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        .vv-field-wrapper{
+            border: 1px solid grey;
+            padding: 8px;
+            border-radius: 8px;
+
+            .vv-field-input{
+                border: 0;
+
+                &:focus{
+                    outline: none;
+                }
+            }
+        }
+
+        .vv-field-error{
+            color: red;
+        }
     }
+    
 </style>
