@@ -10,7 +10,14 @@
         </div>
         
         <div class="vv-field-error">
-            {{ errorMessage }}
+            <Transition>
+                <div v-if="errorMessage">
+                    <span>
+                        {{ errorMessage }}
+                    </span>
+                </div>
+            </Transition>
+
         </div>
     </div>
 </template>
@@ -43,7 +50,7 @@ export default defineComponent({
     },
 
     setup(props){
-        const { value, errorMessage } = useField("name", props.rules as any);
+        const { value, errorMessage } = useField(props.name, props.rules as any);
 
         return {
             value, 
@@ -75,8 +82,18 @@ export default defineComponent({
         }
 
         .vv-field-error{
+            height: 25px;
             color: red;
         }
     }
     
+    .v-enter-active,
+    .v-leave-active {
+    transition: opacity 0.5s ease;
+    }
+
+    .v-enter-from,
+    .v-leave-to {
+    opacity: 0;
+    }
 </style>
